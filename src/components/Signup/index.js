@@ -3,14 +3,16 @@ import axios from "axios";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [avter, setAvter] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("61a48b1362b112055163b916");
 
   const signup = async () => {
     try {
       const result = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/signup`,
-        { email, password, role }
+        `${process.env.REACT_APP_BASE_URL}/user/signup`,
+        { email, username, password, avter, role }
       );
       console.log(result.data);
       alert("Successful registering");
@@ -22,11 +24,25 @@ export default function Signup() {
   return (
     <div>
       <h1>signup</h1>
+      <h2>Email</h2>
       <input
         type="email"
         name="email"
         onChange={(e) => setEmail(e.target.value)}
       />
+      <h2>Username</h2>
+      <input
+        type="username"
+        name="username"
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <h2>avter</h2>
+      <input
+        type="avter"
+        name="avter"
+        onChange={(e) => setAvter(e.target.value)}
+      />
+      <h2>password</h2>
       <input
         type="password"
         name="password"
@@ -34,8 +50,8 @@ export default function Signup() {
       />
 
       <select
-        name="city"
-        id="cities"
+        name="userType"
+        id="userType"
         onChange={(e) => {
           if (e.target.value === "user") setRole("61a48b1362b112055163b916");
           else setRole("61a48ba362b112055163b918");
