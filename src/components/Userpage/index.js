@@ -30,7 +30,12 @@ export default function Userpage() {
       //console.log("the s  " + state.tasks.taskAdd);
       const result = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/post/addPost`,
-        { img: "fd", desc: post, user: userId, userId },
+        {
+          img: "https://image.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg",
+          desc: post,
+          user: userId,
+          userId,
+        },
         {
           headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
         }
