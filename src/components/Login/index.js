@@ -21,9 +21,10 @@ export default function Login() {
 
       const data = {
         token: result.data.token,
-        role: result.data.result.role,
-        ID: result.data.result._id,
+        role: result.data.result[0].role,
+        ID: result.data.result[0]._id,
       };
+      console.log(result.data.result);
 
       dispatch(login2(data));
 
