@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Userpage() {
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState("");
   const [postUpdated, setPostUpdated] = useState("");
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     getAllItems();
   }, []);
@@ -87,6 +91,10 @@ export default function Userpage() {
     }
   };
 
+  const showComments = (id) => {
+    navigate(`/showComments/${id}`);
+  };
+
   return (
     <div>
       <h1>Userpage</h1>
@@ -105,6 +113,14 @@ export default function Userpage() {
       {posts.map((item) => (
         <>
           <p>{item.desc}</p>
+          <button
+            onClick={() => {
+              showComments(item._id);
+            }}
+          >
+            Show comments{" "}
+          </button>
+          <br />
           <input
             type="text"
             name="task"
