@@ -5,6 +5,7 @@ import axios from "axios";
 export default function Userpage() {
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState("");
+  const [postImage, setPostImage] = useState("");
   const [postUpdated, setPostUpdated] = useState("");
 
   const navigate = useNavigate();
@@ -32,10 +33,11 @@ export default function Userpage() {
       const userId = localStorage.getItem("ID");
       const id = localStorage.getItem("ID");
       //console.log("the s  " + state.tasks.taskAdd);
+
       const result = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/post/addPost`,
         {
-          img: "https://image.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg",
+          img: postImage,
           desc: post,
           user: userId,
           userId,
@@ -61,7 +63,6 @@ export default function Userpage() {
         {
           postId,
           userId,
-          img: "https://image.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg",
           desc: postUpdated,
         },
         {
@@ -98,9 +99,31 @@ export default function Userpage() {
   return (
     <div>
       <h1>Userpage</h1>
+      <br />
+      <hr />
+      <br />
+      <input
+        type="text"
+        name="myImage"
+        placeholder="image"
+        onChange={(e) => {
+          setPostImage(e.target.value);
+          // if (e.target.files && e.target.files[0]) {
+          //   //console.log("e.target.result");
+          //   const FR = new FileReader();
+          //   FR.onload = function (e) {
+          //     console.log(e.target.result);
+          //     setPostImage(e.target.result);
+          //   };
+          //   FR.readAsDataURL(e.target.files[0]);
+          // }
+        }}
+      />
+
       <input
         type="post"
         name="post"
+        placeholder="post"
         onChange={(e) => setPost(e.target.value)}
       />
       <button onClick={() => addPost()}> add post </button>
@@ -112,7 +135,10 @@ export default function Userpage() {
       <h1>My Posts</h1>
       {posts.map((item) => (
         <>
+          <h2>{item.user}</h2>
+          <img src={item.img} width="200px" height="200px" />
           <p>{item.desc}</p>
+          <p>{item.timestamp}</p>
           <button
             onClick={() => {
               showComments(item._id);
@@ -130,6 +156,9 @@ export default function Userpage() {
           />
           <button onClick={() => updatePost(item._id)}> update </button>
           <button onClick={() => deletePost(item._id)}> delete </button>
+          <br />
+          <hr />
+          <br />
         </>
       ))}
     </div>

@@ -6,6 +6,7 @@ export default function ShowComments() {
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
   const [post, setPost] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const [newComment, setNewComment] = useState("");
   const [updatedComment, setUpdatedComment] = useState("");
@@ -24,10 +25,12 @@ export default function ShowComments() {
       );
 
       setPost(result.data.result);
+      setUsers(result.data.user);
       setComments(result.data.comment);
       setLikes(result.data.like);
+      //setUsers(result.data.user);
 
-      // console.log(result.data.comment);
+      console.log(result.data.user);
       // console.log(result.data.like);
       // console.log(result.data.result);
       console.log(post);
@@ -109,8 +112,8 @@ export default function ShowComments() {
       {post.map((item) => (
         <>
           <h2>{item.user}</h2>
+          <img src={item.img} />
           <p>{item.desc}</p>
-          <p>{item.img}</p>
           <p>{item.timestamp}</p>
         </>
       ))}

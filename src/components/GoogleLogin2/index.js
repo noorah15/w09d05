@@ -10,17 +10,15 @@ const clientId =
 function GoogleLogin2() {
   const onSuccess = (res) => {
     console.log("Login Success: currentUser:", res.profileObj);
-    alert(
-      `Logged in successfully welcome ${res.profileObj.name} 😍. \n See console for full profile object.`
-    );
+    alert(`Logged in successfully welcome ${res.profileObj.name}`);
     refreshTokenSetup(res);
+    localStorage.setItem("token", res.accessToken);
+    console.log(res);
   };
 
   const onFailure = (res) => {
     console.log("Login failed: res:", res);
-    alert(
-      `Failed to login. 😢 Please ping this to repo owner twitter.com/sivanesh_fiz`
-    );
+    alert(`Failed to login.`);
   };
 
   return (

@@ -34,6 +34,7 @@ export default function Allpage() {
       {posts.map((item) => (
         <>
           <h2>{item.user}</h2>
+          <img src={item.img} width="200px" height="200px" />
           <p>{item.desc}</p>
           <p>{item.img}</p>
           <p>{item.timestamp}</p>

@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# Socail media
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Socail media description:
 
-## Available Scripts
+In this project, it has been created the Socail media that enables users to add, update and remove his/her posts and comment and interact with each other. In addition, it has an admin that has permission to remove any post and comment from any user.
 
-In the project directory, you can run:
+## User story format:
 
-### `npm start`
+- Signup: As an anon, I can sign up in the website as the user so that I have permission to add, update and remove my posts and comments.
+- Login: As a user, I can login to the website so that I can start to add, update and remove my posts and comments.
+- Logout: As a user or admin I can logout from the website so no need to use it anymore.
+- Add post: As a user, I can start to add a post so that I can see it on the website.
+- Update post: As a user, I can start to update a post so that I can see it on the website.
+- Delete post: As a user, I can start to remove a post so that I can't see it on the website.
+- Add comment: As a user, I can start to add a comment so that I can see it on the website.
+- Update comment: As a user, I can start to update a comment so that I can see it on the website.
+- Delete comment: As a user, I can start to remove a comment so that I can't see it on the website.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Admin story format:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Signup: As an anon, I can sign up in the website as admin so so that I have permission to remove any post and comment from any user.
+- Login: As an admin, I can login to the website so that I can start to add, update and remove tasks from any user.
+- Delete post: As an admin, I can start to remove a post to any user so that I can't see it on the website and the user can't see it also.
+- Delete comment: As an admin, I can start to remove a comment to any user so that I can't see it on the website and the user can't see it also.
 
-### `npm test`
+## UML
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Untitled%20Diagram.drawio1 img](https://github.com/noorah15/w09d03/blob/main/Untitled%20Diagram.drawio1.png)
 
-### `npm run build`
+In this task, it has been created frontend with React.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    In command write:
+    npx create-react-app .
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+It has been import these packages:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    npm i react-router-dom
 
-### `npm run eject`
+    npm i axios
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    npm install react-redux
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    npm install react-redux
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    npm install redux-devtools-extension
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    npm i react-google-login
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Socail media backend
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+see https://github.com/noorah15/W08D03

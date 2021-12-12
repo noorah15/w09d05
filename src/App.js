@@ -1,6 +1,5 @@
 import "./App.css";
-import GoogleLogin2 from "./components/GoogleLogin2";
-import GoogleLogout2 from "./components/GoogleLogout2";
+
 import Signup from "./components/Signup";
 import Userpage from "./components/Userpage";
 import Allpage from "./components/Allpage";
@@ -14,8 +13,6 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 function App() {
   return (
     <>
-      <GoogleLogin2 />
-      <GoogleLogout2 />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/showComments/:id" element={<ShowComments />} />

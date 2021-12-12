@@ -7,6 +7,8 @@ import Header from "./../Header";
 import { login2, logout2 } from "./../../reducers/login";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import GoogleLogin2 from "./../GoogleLogin2";
+import GoogleLogout2 from "./../GoogleLogout2";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -26,6 +28,13 @@ export default function Home() {
           <br />
           <br />
           <Signup />
+          <br />
+          <br />
+          <hr />
+          <br />
+          <br />
+
+          <GoogleLogin2 />
         </>
       ) : (
         <>

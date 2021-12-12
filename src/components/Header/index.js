@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login2, logout2 } from "./../../reducers/login";
 import { useDispatch, useSelector } from "react-redux";
+import GoogleLogout2 from "./../GoogleLogout2";
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -31,6 +32,8 @@ export default function Header() {
       >
         logout{" "}
       </button>
+
+      <GoogleLogout2 />
     </div>
   );
 }
