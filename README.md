@@ -25,7 +25,7 @@ In this project, it has been created the Socail media that enables users to add,
 
 ## UML
 
-![Untitled%20Diagram.drawio1 img](https://github.com/noorah15/w09d03/blob/main/Untitled%20Diagram.drawio1.png)
+![W09D05.drawio img](https://github.com/noorah15/w09d05/blob/main/W09D05.drawio.png)
 
 In this task, it has been created frontend with React.
 
@@ -46,8 +46,6 @@ It has been import these packages:
 
     npm i react-google-login
 
-
-
 # Socail media backend
 
-see https://github.com/noorah15/W08D03
+see https://github.com/noorah15/W08D04
