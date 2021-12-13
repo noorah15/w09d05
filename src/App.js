@@ -6,6 +6,8 @@ import Allpage from "./components/Allpage";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import ShowComments from "./components/ShowComments";
+import CompleteResetPassword from "./components/CompleteResetPassword";
+import ResetPass from "./components/ResetPass";
 import { login2, logout2 } from "./reducers/login";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
@@ -15,6 +17,13 @@ function App() {
     <>
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/reset-pass" element={<ResetPass />} />
+        <Route
+          exact
+          path="user/completeResetPassword/:id"
+          element={<CompleteResetPassword />}
+        />
+
         <Route exact path="/showComments/:id" element={<ShowComments />} />
         <Route
           exact

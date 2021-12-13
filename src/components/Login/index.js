@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { login2 } from "./../../reducers/login";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
@@ -50,6 +51,8 @@ export default function Login() {
       />
 
       <button onClick={() => login()}> login </button>
+
+      <Link to="/reset-pass">reset-pass</Link>
     </div>
   );
 }

@@ -34,7 +34,7 @@ export default function Home() {
           <br />
           <br />
 
-          <GoogleLogin2 />
+          {/* <GoogleLogin2 /> */}
         </>
       ) : (
         <>
