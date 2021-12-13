@@ -34,17 +34,18 @@ export default function Home() {
           <br />
           <br />
 
-          {/* <GoogleLogin2 /> */}
+          <GoogleLogin2 />
         </>
       ) : (
         <>
-          {localStorage.getItem("role") === "61a48b1362b112055163b916" ? (
-            <>{navigate(`/user`)}</>
+          <>{navigate(`/user`)}</>
+          {/* {localStorage.getItem("role") === "61a48b1362b112055163b916" ? (
+            
           ) : (
             <>
               <h1>Hello admin</h1>
             </>
-          )}
+          )} */}
         </>
       )}
     </div>

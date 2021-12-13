@@ -22,7 +22,7 @@ function GoogleLogout2() {
     dispatch(logout2(data));
     navigate("/");
 
-    alert("Logout made successfully ✌");
+    alert("Logout made successfully");
   };
 
   return (

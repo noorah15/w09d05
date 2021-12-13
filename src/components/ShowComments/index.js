@@ -120,12 +120,18 @@ export default function ShowComments() {
       <br />
       <hr />
       <br />
-      <input
-        type="comment"
-        name="comment"
-        onChange={(e) => setNewComment(e.target.value)}
-      />
-      <button onClick={() => addComment()}> add comment </button>
+      {!localStorage.getItem("ID") ? (
+        <></>
+      ) : (
+        <>
+          <input
+            type="comment"
+            name="comment"
+            onChange={(e) => setNewComment(e.target.value)}
+          />
+          <button onClick={() => addComment()}> add comment </button>
+        </>
+      )}
 
       <h1>all comments</h1>
       {comments.map((item) => (
@@ -147,7 +153,8 @@ export default function ShowComments() {
               <button onClick={() => updateComment(item._id)}> update </button>
               <button onClick={() => deleteComment(item._id)}> delete </button>
             </>
-          ) : localStorage.getItem("ID") === post[0].user ? (
+          ) : localStorage.getItem("ID") === post[0].user ||
+            localStorage.getItem("role") === "61a48ba362b112055163b918" ? (
             <>
               <button onClick={() => deleteComment(item._id)}> delete </button>
             </>

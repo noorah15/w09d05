@@ -28,6 +28,22 @@ export default function Allpage() {
     navigate(`/showComments/${id}`);
   };
 
+  const deletePost = async (postId) => {
+    try {
+      const userId = localStorage.getItem("ID");
+      const result = await axios.delete(
+        `${process.env.REACT_APP_BASE_URL}/post/delPost`,
+        {
+          data: { userId, postId },
+          headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      getAllItems();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div>
       <h1>all posts</h1>
@@ -45,6 +61,12 @@ export default function Allpage() {
           >
             Show comments{" "}
           </button>
+          {localStorage.getItem("role") === "61a48ba362b112055163b918" ? (
+            <button onClick={() => deletePost(item._id)}> delete </button>
+          ) : (
+            <></>
+          )}
+
           <br />
           <hr />
           <br />

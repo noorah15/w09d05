@@ -13,27 +13,31 @@ export default function Header() {
   });
   return (
     <div>
-      <Link to="/user">user</Link>
-      <br />
-      <Link to="/all">all</Link>
-      <br />
+      {localStorage.getItem("ID") ? (
+        <>
+          <Link to="/user">user</Link>
+          <br />
+          <Link to="/all">all</Link>
+          <br />
 
-      <button
-        onClick={() => {
-          const data = {
-            token: "",
-            role: "",
-            ID: "",
-          };
+          <button
+            onClick={() => {
+              const data = {
+                token: "",
+                role: "",
+                ID: "",
+              };
 
-          dispatch(logout2(data));
-          navigate("/");
-        }}
-      >
-        logout{" "}
-      </button>
-
-      <GoogleLogout2 />
+              dispatch(logout2(data));
+              navigate("/");
+            }}
+          >
+            logout{" "}
+          </button>
+        </>
+      ) : (
+        <GoogleLogout2 />
+      )}
     </div>
   );
 }

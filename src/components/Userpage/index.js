@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { storage } from "./../../firebase";
 
 export default function Userpage() {
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState("");
-  const [postImage, setPostImage] = useState("");
   const [postUpdated, setPostUpdated] = useState("");
+
+  const [file, setFile] = useState(null);
+  const [url, setURL] = useState("");
 
   const navigate = useNavigate();
 
@@ -28,16 +31,29 @@ export default function Userpage() {
     }
   };
 
+  const handleUpload = () => {
+    const ref = storage.ref(`/images/${file.name}`);
+    const uploadTask = ref.put(file);
+    uploadTask.on("state_changed", console.log, console.error, () => {
+      ref.getDownloadURL().then((url) => {
+        setFile(null);
+        setURL(url);
+        addPost();
+      });
+    });
+  };
+
   const addPost = async () => {
     try {
       const userId = localStorage.getItem("ID");
       const id = localStorage.getItem("ID");
       //console.log("the s  " + state.tasks.taskAdd);
+      console.log(url);
 
       const result = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/post/addPost`,
         {
-          img: postImage,
+          img: url,
           desc: post,
           user: userId,
           userId,
@@ -103,20 +119,11 @@ export default function Userpage() {
       <hr />
       <br />
       <input
-        type="text"
+        type="file"
         name="myImage"
         placeholder="image"
         onChange={(e) => {
-          setPostImage(e.target.value);
-          // if (e.target.files && e.target.files[0]) {
-          //   //console.log("e.target.result");
-          //   const FR = new FileReader();
-          //   FR.onload = function (e) {
-          //     console.log(e.target.result);
-          //     setPostImage(e.target.result);
-          //   };
-          //   FR.readAsDataURL(e.target.files[0]);
-          // }
+          setFile(e.target.files[0]);
         }}
       />
 
@@ -126,7 +133,7 @@ export default function Userpage() {
         placeholder="post"
         onChange={(e) => setPost(e.target.value)}
       />
-      <button onClick={() => addPost()}> add post </button>
+      <button onClick={() => handleUpload()}> add post </button>
 
       <br />
       <hr />
