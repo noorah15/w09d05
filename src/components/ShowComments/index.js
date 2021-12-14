@@ -42,7 +42,8 @@ export default function ShowComments() {
   const addComment = async () => {
     try {
       const userId = localStorage.getItem("ID");
-      const id = localStorage.getItem("ID");
+      const avter = localStorage.getItem("avter");
+      const username = localStorage.getItem("username");
       //console.log("the s  " + state.tasks.taskAdd);
       const result = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/comments/addCommnet`,
@@ -51,6 +52,8 @@ export default function ShowComments() {
           user: userId,
           userId,
           postId: post[0]._id,
+          avter,
+          username,
         },
         {
           headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -115,6 +118,7 @@ export default function ShowComments() {
           <img src={item.img} />
           <p>{item.desc}</p>
           <p>{item.timestamp}</p>
+          <span>{item.likes.filter((item) => !item.isLike).length}</span>
         </>
       ))}
       <br />
@@ -136,7 +140,7 @@ export default function ShowComments() {
       <h1>all comments</h1>
       {comments.map((item) => (
         <>
-          <h2>{item.userId}</h2>
+          <h2>{item.username}</h2>
           <p>{item.desc}</p>
           <p>{item.timestamp}</p>
           <br />

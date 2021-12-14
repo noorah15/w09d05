@@ -24,6 +24,8 @@ export default function Login() {
         token: result.data.token,
         role: result.data.result[0].role,
         ID: result.data.result[0]._id,
+        avter: result.data.result[0].avter,
+        username: result.data.result[0].username,
       };
       console.log(result.data.result);
 

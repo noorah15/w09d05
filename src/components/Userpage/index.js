@@ -7,6 +7,7 @@ export default function Userpage() {
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState("");
   const [postUpdated, setPostUpdated] = useState("");
+  const [like, setLike] = useState("Like");
 
   const [file, setFile] = useState(null);
   const [url, setURL] = useState("");
@@ -36,7 +37,7 @@ export default function Userpage() {
     const uploadTask = ref.put(file);
     uploadTask.on("state_changed", console.log, console.error, () => {
       ref.getDownloadURL().then((url) => {
-        setFile(null);
+        // setFile(null);
         setURL(url);
         addPost();
       });
@@ -46,7 +47,8 @@ export default function Userpage() {
   const addPost = async () => {
     try {
       const userId = localStorage.getItem("ID");
-      const id = localStorage.getItem("ID");
+      const avter = localStorage.getItem("avter");
+      const username = localStorage.getItem("username");
       //console.log("the s  " + state.tasks.taskAdd);
       console.log(url);
 
@@ -57,6 +59,8 @@ export default function Userpage() {
           desc: post,
           user: userId,
           userId,
+          avter,
+          username,
         },
         {
           headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -112,6 +116,27 @@ export default function Userpage() {
     navigate(`/showComments/${id}`);
   };
 
+  const setLikeFun = async (id) => {
+    const userId = localStorage.getItem("ID");
+
+    try {
+      const result = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/post/setLike`,
+        {
+          postId: id,
+          userId,
+        },
+        {
+          headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      console.log(result);
+      getAllItems();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div>
       <h1>Userpage</h1>
@@ -121,7 +146,7 @@ export default function Userpage() {
       <input
         type="file"
         name="myImage"
-        placeholder="image"
+        accept="image/*"
         onChange={(e) => {
           setFile(e.target.files[0]);
         }}
@@ -142,7 +167,7 @@ export default function Userpage() {
       <h1>My Posts</h1>
       {posts.map((item) => (
         <>
-          <h2>{item.user}</h2>
+          <h2>{item.username}</h2>
           <img src={item.img} width="200px" height="200px" />
           <p>{item.desc}</p>
           <p>{item.timestamp}</p>
@@ -163,6 +188,16 @@ export default function Userpage() {
           />
           <button onClick={() => updatePost(item._id)}> update </button>
           <button onClick={() => deletePost(item._id)}> delete </button>
+
+          {item.likes.find((found) => {
+            return found.user == localStorage.getItem("ID") && found.isLike;
+          }) ? (
+            <button onClick={() => setLikeFun(item._id)}> unlike </button>
+          ) : (
+            <button onClick={() => setLikeFun(item._id)}>like </button>
+          )}
+          <span>{item.likes.filter((item) => !item.isLike).length}</span>
+
           <br />
           <hr />
           <br />

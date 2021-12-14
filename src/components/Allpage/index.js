@@ -44,12 +44,33 @@ export default function Allpage() {
     }
   };
 
+  const setLikeFun = async (id) => {
+    const userId = localStorage.getItem("ID");
+
+    try {
+      const result = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/post/setLike`,
+        {
+          postId: id,
+          userId,
+        },
+        {
+          headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      console.log(result);
+      getAllItems();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div>
       <h1>all posts</h1>
       {posts.map((item) => (
         <>
-          <h2>{item.user}</h2>
+          <h2>{item.username}</h2>
           <img src={item.img} width="200px" height="200px" />
           <p>{item.desc}</p>
           <p>{item.img}</p>
@@ -66,6 +87,20 @@ export default function Allpage() {
           ) : (
             <></>
           )}
+
+          {localStorage.getItem("ID") ? (
+            item.likes.find((found) => {
+              return found.user == localStorage.getItem("ID") && !found.isLike;
+            }) ? (
+              <button onClick={() => setLikeFun(item._id)}> unlike </button>
+            ) : (
+              <button onClick={() => setLikeFun(item._id)}>like </button>
+            )
+          ) : (
+            <></>
+          )}
+
+          <span>{item.likes.filter((item) => !item.isLike).length}</span>
 
           <br />
           <hr />
