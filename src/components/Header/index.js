@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { login2, logout2 } from "./../../reducers/login";
 import { useDispatch, useSelector } from "react-redux";
 import GoogleLogout2 from "./../GoogleLogout2";
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -15,9 +16,19 @@ export default function Header() {
     <div>
       {localStorage.getItem("ID") ? (
         <>
-          <Link to="/user">user</Link>
+          <Tabs variant="enclosed">
+            <TabList>
+              <Tab>
+                <Link to="/user">user</Link>
+              </Tab>
+              <Tab>
+                <Link to="/all">all</Link>
+              </Tab>
+            </TabList>
+          </Tabs>
+
           <br />
-          <Link to="/all">all</Link>
+
           <br />
 
           <button

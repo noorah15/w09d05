@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { storage } from "./../../firebase";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -8,11 +9,26 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("61a48b1362b112055163b916");
 
+  const [file, setFile] = useState(null);
+  const [url, setURL] = useState("");
+
+  const handleUpload = () => {
+    const ref = storage.ref(`/images/${file.name}`);
+    const uploadTask = ref.put(file);
+    uploadTask.on("state_changed", console.log, console.error, () => {
+      ref.getDownloadURL().then((url) => {
+        // setFile(null);
+        setURL(url);
+        signup();
+      });
+    });
+  };
+
   const signup = async () => {
     try {
       const result = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/user/signup`,
-        { email, username, password, avter, role }
+        { email, username, password, avter: url, role }
       );
       console.log(result.data);
       alert("Successful registering");
@@ -38,9 +54,12 @@ export default function Signup() {
       />
       <h2>avter</h2>
       <input
-        type="avter"
-        name="avter"
-        onChange={(e) => setAvter(e.target.value)}
+        type="file"
+        name="myImage"
+        accept="image/*"
+        onChange={(e) => {
+          setFile(e.target.files[0]);
+        }}
       />
       <h2>password</h2>
       <input
@@ -61,7 +80,7 @@ export default function Signup() {
         <option value="admin">admin</option>
       </select>
 
-      <button onClick={() => signup()}> register </button>
+      <button onClick={() => handleUpload()}> register </button>
     </div>
   );
 }

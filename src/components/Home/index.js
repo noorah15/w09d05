@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import GoogleLogin2 from "./../GoogleLogin2";
 import GoogleLogout2 from "./../GoogleLogout2";
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -21,13 +22,27 @@ export default function Home() {
     <div>
       {!localStorage.getItem("token") ? (
         <>
-          <Login />
+          <Tabs variant="enclosed">
+            <TabList>
+              <Tab>Login</Tab>
+              <Tab>Signup</Tab>
+            </TabList>
+            <TabPanels>
+              <TabPanel>
+                <Login />
+              </TabPanel>
+              <TabPanel>
+                <Signup />
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+
           <br />
           <br />
           <hr />
           <br />
           <br />
-          <Signup />
+
           <br />
           <br />
           <hr />

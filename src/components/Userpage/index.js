@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { storage } from "./../../firebase";
+import { AiFillHeart } from "react-icons/ai";
+import { AiOutlineHeart } from "react-icons/ai";
 
 export default function Userpage() {
   const [posts, setPosts] = useState([]);
@@ -192,9 +194,13 @@ export default function Userpage() {
           {item.likes.find((found) => {
             return found.user == localStorage.getItem("ID") && found.isLike;
           }) ? (
-            <button onClick={() => setLikeFun(item._id)}> unlike </button>
+            <button onClick={() => setLikeFun(item._id)}>
+              <AiOutlineHeart />{" "}
+            </button>
           ) : (
-            <button onClick={() => setLikeFun(item._id)}>like </button>
+            <button onClick={() => setLikeFun(item._id)}>
+              <AiFillHeart />{" "}
+            </button>
           )}
           <span>{item.likes.filter((item) => !item.isLike).length}</span>
 
